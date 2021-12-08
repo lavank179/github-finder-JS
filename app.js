@@ -15,16 +15,18 @@ searchUser.addEventListener('keyup', (e) => {
         //make http call
         github.getUser(userText)
         .then(data => {
+            console.log(data);
             if(data.profile.message === 'Not Found'){
                 //show alert
-
+                ui.showAlert('USer not found', 'alert alert-danger');
             } else{
                 // show profile
                 ui.showProfile(data.profile);
+                ui.showRepos(data.repos);
             }
         });
     } else {
         // clear profile
-
+        ui.clearProfile();
     }
 });
